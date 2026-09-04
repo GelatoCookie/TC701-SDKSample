@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:title="@string/app_name"
+            app:titleTextColor="?attr/colorOnPrimary" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:padding="16dp">
+
+        <!-- Status Card -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/statusCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="2dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:strokeColor="?attr/colorPrimary"
+            app:strokeWidth="1dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:padding="12dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/textrfid"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_rfid_status"
+                    android:textAppearance="?attr/textAppearanceSubtitle2"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textViewStatusrfid"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:textAppearance="?attr/textAppearanceBody2"
+                    app:layout_constraintEnd_toStartOf="@+id/progressBar"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textrfid"
+                    tools:text="Disconnected" />
+
+                <ProgressBar
+                    android:id="@+id/progressBar"
+                    style="?android:attr/progressBarStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="@+id/textViewStatusrfid"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textViewStatusrfid" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <LinearLayout
+            android:id="@+id/connectionRow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/statusCard">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnConnect"
+                style="@style/Widget.MaterialComponents.Button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="4dp"
+                android:layout_weight="1"
+                android:onClick="connectReader"
+                android:text="@string/btn_connect" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnDisconnect"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_weight="1"
+                android:onClick="disconnectReader"
+                android:text="@string/btn_disconnect" />
+
+        </LinearLayout>
+
+        <!-- Input Section -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tagIdLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:hint="@string/hint_tag_id"
+            app:layout_constraintEnd_toStartOf="@+id/passwordLayout"
+            app:layout_constraintHorizontal_weight="2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/connectionRow">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tagId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="E28011112222333344445555"
+                android:textSize="12sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/passwordLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:hint="@string/hint_password"
+            app:layout_constraintBottom_toBottomOf="@+id/tagIdLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@+id/tagIdLayout"
+            app:layout_constraintTop_toTopOf="@+id/tagIdLayout">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="11112222"
+                android:textSize="12sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Actions -->
+        <Button
+            android:visibility="gone"
+            android:id="@+id/scan"
+            style="@style/Widget.MaterialComponents.Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/btn_pull_trigger"
+            app:layout_constraintTop_toBottomOf="@+id/tagIdLayout" />
+
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/scanResult"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="#F5F5F5"
+            android:padding="8dp"
+            android:text="@string/label_scan_result_none"
+            android:textAppearance="?attr/textAppearanceCaption"
+            app:layout_constraintTop_toBottomOf="@+id/scan" />
+
+        <LinearLayout
+            android:id="@+id/buttonRow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/scanResult">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnInventoryStart"
+                style="@style/Widget.MaterialComponents.Button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="4dp"
+                android:layout_weight="1"
+                android:onClick="StartInventory"
+                android:text="@string/btn_start" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnInventoryStop"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
+                android:layout_weight="1"
+                android:onClick="StopInventory"
+                android:text="@string/btn_stop" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnDeletePrefilter"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_weight="1"
+                android:onClick="testFunction"
+                android:text="@string/btn_clean_filters"
+                android:textSize="10sp" />
+
+        </LinearLayout>
+
+        <!-- Inventory List Header -->
+        <LinearLayout
+            android:id="@+id/listHeader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="#E0E0E0"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            app:layout_constraintTop_toBottomOf="@+id/buttonRow">
+
+            <TextView
+                android:id="@+id/listHeaderPrimary"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/label_tag_id"
+                android:textColor="#212121"
+                android:textStyle="bold"
+                android:textAppearance="?attr/textAppearanceSubtitle2" />
+
+            <TextView
+                android:id="@+id/listHeaderSecondary"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:text="@string/label_rssi"
+                android:gravity="end"
+                android:textColor="#212121"
+                android:textStyle="bold"
+                android:textAppearance="?attr/textAppearanceSubtitle2" />
+
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/tagRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="2dp"
+            android:background="#FAFAFA"
+            android:clipToPadding="false"
+            android:paddingVertical="4dp"
+            android:elevation="1dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/listHeader"
+            tools:listitem="@layout/item_tag" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Centered reading indicator overlay -->
+    <FrameLayout
+        android:id="@+id/readingOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent"
+        android:clickable="false"
+        android:focusable="false"
+        android:elevation="8dp"
+        android:visibility="gone">
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            style="?android:attr/progressBarStyleLarge" />
+
+    </FrameLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

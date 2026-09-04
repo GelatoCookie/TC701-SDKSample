@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="8dp"
+    android:layout_marginVertical="4dp"
+    app:cardBackgroundColor="#F5F7FA"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="2dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="14dp">
+
+        <TextView
+            android:id="@+id/tagIdText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:fontFamily="monospace"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textColor="#212121"
+            android:textSize="15sp"
+            tools:text="E28011C1A5000062F792696D" />
+
+        <TextView
+            android:id="@+id/rssiText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:background="@drawable/bg_rssi_badge"
+            android:maxLines="1"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="6dp"
+            android:singleLine="true"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            android:textSize="13sp"
+            tools:text="-56 dBm" />
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>
