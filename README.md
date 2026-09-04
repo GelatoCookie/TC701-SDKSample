@@ -1,6 +1,8 @@
 # Zebra RFID SDK Sample (TC701)
 
-This project demonstrates how to integrate the Zebra RFID SDK into an Android application to interact with Zebra RFID readers (e.g., RFD40, RFD8500).
+This project demonstrates how to integrate the Zebra RFID SDK into an Android application to interact with Zebra RFID readers
+
+![TC701](image.png)
 
 ## Core Functionalities
 
@@ -15,7 +17,7 @@ This project demonstrates how to integrate the Zebra RFID SDK into an Android ap
 ## Getting Started
 
 ### Prerequisites
-- Zebra RFID SDK (`api3lib-release.aar`) included in the project.
+- Zebra RFID SDK AAR (`app/libs/rfidapi3lib-2.0.5.297.aar`) included in the project and pulled in via `fileTree` in [app/build.gradle](app/build.gradle).
 - Android 12+ requires Bluetooth permissions (`BLUETOOTH_SCAN`, `BLUETOOTH_CONNECT`).
 
 ### Quick Start
